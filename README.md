@@ -1,4 +1,4 @@
-# recipe_finder
+# Recipe Finder
 
 A new Flutter project.
 
