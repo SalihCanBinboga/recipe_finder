@@ -6,6 +6,7 @@ part 'recipe_entity.g.dart';
 
 @JsonSerializable()
 class RecipeEntity {
+  final String id;
   final String name;
   final String imageUrl;
   final List<String> ingredients;
@@ -13,6 +14,7 @@ class RecipeEntity {
   final String url;
 
   const RecipeEntity({
+    required this.id,
     required this.name,
     required this.imageUrl,
     required this.ingredients,
@@ -22,6 +24,7 @@ class RecipeEntity {
 
   factory RecipeEntity.fromRecipeResponse(RecipeResponse recipe) {
     return RecipeEntity(
+      id: recipe.id,
       name: recipe.name,
       imageUrl: recipe.imageUrl,
       ingredients: recipe.ingredients,
@@ -34,10 +37,4 @@ class RecipeEntity {
       _$RecipeEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecipeEntityToJson(this);
-
-  String get id {
-    final name = this.name.toLowerCase();
-    final nameList = name.split(" ");
-    return nameList.join("-");
-  }
 }
