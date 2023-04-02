@@ -27,7 +27,7 @@ class RecipeEntity {
       id: recipe.id,
       name: recipe.name,
       imageUrl: recipe.imageUrl,
-      ingredients: recipe.ingredients,
+      ingredients: recipe.ingredients.map((e) => e.food).toList(),
       ingredientLines: recipe.ingredientLines,
       url: recipe.url,
     );
