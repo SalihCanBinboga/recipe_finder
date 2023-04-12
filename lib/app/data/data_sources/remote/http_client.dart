@@ -1,27 +1,53 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+
+import '../constants/api_keys.dart';
 
 // TODO: 2.04.2023 13:57 May create dependency injection for this class
 class HttpClient {
   static final HttpClient _singleton = HttpClient._internal();
 
   factory HttpClient({required String baseUrl}) {
-    final dio = _singleton._dio;
+    final dio = _singleton._client;
     dio.options.baseUrl = baseUrl;
 
-    const appKey = String.fromEnvironment('app_key', defaultValue: '');
-    const appId = String.fromEnvironment('app_id', defaultValue: '');
+    for (final apiKey in ApiKeys.values) {
+      dio.options.headers.addAll(
+        {
+          apiKey.name: apiKey.value,
+        },
+      );
+    }
 
-    dio.options.queryParameters.addAll({
-      'app_key': appKey,
-      'app_id': appId,
-    });
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          if (kDebugMode) {
+            print('REQUEST[${options.method}] => PATH: ${options.path}');
+          }
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          if (kDebugMode) {
+            print('RESPONSE[${response.statusCode}] => '
+                'PATH: ${response.requestOptions.path}');
+          }
+          return handler.next(response);
+        },
+        onError: (DioError e, handler) {
+          if (kDebugMode) {
+            print('ERROR[${e.response?.statusCode}] => '
+                'PATH: ${e.requestOptions.path}');
+          }
+          return handler.next(e);
+        },
+      ),
+    );
 
     return _singleton;
   }
 
-  final Dio _dio = Dio();
-
-  Dio get _client => _dio;
+  final Dio _client = Dio();
 
   HttpClient._internal();
 
