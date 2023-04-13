@@ -44,12 +44,18 @@ class RecipeRepositoryImpl implements RecipeRepository {
   }
 
   @override
-  Future<Iterable<RecipeEntity>> getRecipes() async {
-    // TODO: 1.04.2023 21:56 May create a cache for this
+  Future<Iterable<RecipeEntity>> searchRecipes({
+    required String query,
+  }) async {
+    // TODO: 1.04.2023 21:56 May create a cache for this data.
 
-    final result = await _remoteDataSource.getRecipes();
+    final result = await _remoteDataSource.searchRecipes(
+      query: query,
+    );
 
-    final recipes = result.map((recipe) => RecipeResponse.fromJson(recipe));
+    final recipeHits = result['hits'] as List<dynamic>;
+
+    final recipes = recipeHits.map((recipe) => RecipeResponse.fromJson(recipe));
 
     return recipes.map(
       (recipe) => RecipeEntity.fromRecipeResponse(recipe),

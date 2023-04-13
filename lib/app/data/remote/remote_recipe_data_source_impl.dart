@@ -16,8 +16,23 @@ class RemoteRecipeDataSourceImpl extends RemoteRecipeDataSource {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getRecipes() async {
-    final response = await _httpClient.get();
-    return response.data;
+  Future<Map<String, dynamic>> searchRecipes({
+    required String query,
+  }) async {
+    final response = await _httpClient.get(
+      queryParameters: {
+        'q': query,
+        'type': 'public',
+      },
+    );
+
+    final data = response.data;
+
+    if (data == null) {
+      // TODO: 13.04.2023 13:21 May create a custom exception
+      return {};
+    }
+
+    return data;
   }
 }

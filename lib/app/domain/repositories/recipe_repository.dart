@@ -1,7 +1,9 @@
 import '../models/recipe_entity/recipe_entity.dart';
 
 abstract class RecipeRepository {
-  Future<Iterable<RecipeEntity>> getRecipes();
+  Future<Iterable<RecipeEntity>> searchRecipes({
+    required String query,
+  });
 
   Future<RecipeEntity> getRecipeDetails(String recipeId);
 
