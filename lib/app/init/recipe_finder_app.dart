@@ -6,6 +6,7 @@ class RecipeFinderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: 13.04.2023 15:05 Create named routes structure.
     return MaterialApp(
       home: HomeView(),
     );

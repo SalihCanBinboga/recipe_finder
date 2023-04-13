@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:recipe_finder/app/core/base/reactive_base_view.dart';
 
 import '../../../domain/models/recipe_entity/recipe_entity.dart';
@@ -16,7 +17,46 @@ class RecipeDetailView
       ),
       body: Column(
         children: [
-          Text('Recipe Title: ${viewModel.recipe.name}'),
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(16),
+              bottomRight: Radius.circular(16),
+            ),
+            child: Image.network(
+              viewModel.recipe.imageUrl,
+              width: double.infinity,
+              fit: BoxFit.fill,
+              height: 300,
+            ),
+          ),
+          const Gap(8),
+          Text(
+            viewModel.recipe.name,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              padding: const EdgeInsets.only(top: 16),
+              itemCount: viewModel.recipe.ingredientLines.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                final ingredient = viewModel.recipe.ingredientLines[index];
+
+                return Text(ingredient);
+              },
+            ),
+          ),
+          const Gap(8),
+          const Text(
+            'Ingredients',
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
           ListView.builder(
             padding: const EdgeInsets.only(top: 16),
             itemCount: viewModel.recipe.ingredients.length,
@@ -24,7 +64,9 @@ class RecipeDetailView
             itemBuilder: (context, index) {
               final ingredient = viewModel.recipe.ingredients[index];
 
-              return Text(ingredient);
+              return ListTile(
+                title: Text(ingredient),
+              );
             },
           ),
         ],

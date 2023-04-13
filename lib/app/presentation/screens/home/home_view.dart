@@ -45,7 +45,7 @@ class _RecipeListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<HomeViewModel>();
+    final viewModel = context.watch<HomeViewModel>();
 
     return ListView.builder(
       itemCount: viewModel.recipes.length,
