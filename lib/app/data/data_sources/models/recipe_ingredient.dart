@@ -6,13 +6,11 @@ part 'recipe_ingredient.g.dart';
 class RecipeIngredient {
   final String text;
   final double quantity;
-  final String measure;
   final String food;
 
   RecipeIngredient({
     required this.text,
     required this.quantity,
-    required this.measure,
     required this.food,
   });
 

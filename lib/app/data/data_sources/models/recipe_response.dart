@@ -11,7 +11,11 @@ class RecipeResponse {
     fromJson: _fromJsonForId,
   )
   final String id;
+
+  @JsonKey(name: 'label')
   final String name;
+
+  @JsonKey(name: 'image')
   final String imageUrl;
   final List<RecipeIngredient> ingredients;
   final List<String> ingredientLines;
@@ -27,7 +31,7 @@ class RecipeResponse {
   });
 
   factory RecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$RecipeResponseFromJson(json);
+      _$RecipeResponseFromJson(json['recipe']);
 
   Map<String, dynamic> toJson() => _$RecipeResponseToJson(this);
 
