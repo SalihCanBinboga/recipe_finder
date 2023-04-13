@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 
-import '../constants/api_keys.dart';
-
-// TODO: 2.04.2023 13:57 May create dependency injection for this class
+@Singleton()
 class HttpClient {
   static final HttpClient _singleton = HttpClient._internal();
 

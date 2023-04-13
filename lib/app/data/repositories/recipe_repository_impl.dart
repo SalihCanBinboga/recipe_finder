@@ -1,9 +1,14 @@
+import 'package:injectable/injectable.dart';
+
 import '../../domain/models/recipe_entity/recipe_entity.dart';
 import '../../domain/repositories/recipe_repository.dart';
 import '../data_sources/local/local_recipe_favorite_data_source.dart';
 import '../data_sources/models/recipe_response.dart';
 import '../data_sources/remote/remote_recipe_data_source.dart';
 
+@LazySingleton(
+  as: RecipeRepository,
+)
 class RecipeRepositoryImpl implements RecipeRepository {
   final RemoteRecipeDataSource _remoteDataSource;
   final LocalRecipeFavoriteDataSource _localFavoriteDataSource;
