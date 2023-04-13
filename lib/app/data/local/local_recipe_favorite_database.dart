@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:injectable/injectable.dart';
 import 'package:recipe_finder/app/data/data_sources/local/local_recipe_favorite_data_source.dart';
 
 import '../data_sources/constants/local_storage_keys.dart';
 
+@LazySingleton(as: LocalRecipeFavoriteDataSource)
 class LocalRecipeFavoriteDatabase extends LocalRecipeFavoriteDataSource {
   static final LocalRecipeFavoriteDatabase _instance =
       LocalRecipeFavoriteDatabase._internal();

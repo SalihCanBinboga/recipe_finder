@@ -3,5 +3,7 @@ abstract class RemoteRecipeDataSource {
     required String recipeId,
   });
 
-  Future<List<Map<String, dynamic>>> getRecipes();
+  Future<Map<String, dynamic>> searchRecipes({
+    required String query,
+  });
 }

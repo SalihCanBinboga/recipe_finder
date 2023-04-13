@@ -1,22 +1,29 @@
+import 'package:injectable/injectable.dart';
+
+import '../../core/utils/debounce_manager.dart';
 import '../models/recipe_entity/recipe_entity.dart';
 import '../repositories/recipe_repository.dart';
 
+@LazySingleton()
 class SearchRecipesUseCase {
   final RecipeRepository repository;
 
   SearchRecipesUseCase({required this.repository});
 
-  Future<List<RecipeEntity>> call({
+  final DebounceManager debounceManager = DebounceManager();
+
+  void call({
     required final String query,
-  }) async {
-    final result = await repository.getRecipes();
+    required final Function(List<RecipeEntity>) onResult,
+  }) {
+    debounceManager.run(
+      () async {
+        final result = await repository.searchRecipes(
+          query: query,
+        );
 
-    // Users should be able to search for recipes based on ingredients or recipe names.
-    return result.where((recipe) {
-      final ingredients = recipe.ingredients.contains(query);
-      final recipeName = recipe.name;
-
-      return ingredients || recipeName.contains(query);
-    }).toList();
+        onResult(result.toList());
+      },
+    );
   }
 }
