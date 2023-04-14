@@ -55,10 +55,13 @@ class _RecipeListWidget extends StatelessWidget {
 
         return ListTile(
           title: Text(recipe.name),
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              recipe.imageUrl,
+          leading: Hero(
+            tag: recipe.id,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                recipe.imageUrl,
+              ),
             ),
           ),
           minVerticalPadding: 32,
