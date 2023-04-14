@@ -66,10 +66,8 @@ class _RecipeListWidget extends StatelessWidget {
           ),
           minVerticalPadding: 32,
           onTap: () {
-            final navigator = Navigator.of(context);
-
             viewModel.onRecipePressed(
-              navigator: navigator,
+              context: context,
               recipe: recipe,
             );
           },
