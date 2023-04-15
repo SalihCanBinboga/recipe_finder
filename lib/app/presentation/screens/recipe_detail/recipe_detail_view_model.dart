@@ -16,8 +16,12 @@ class RecipeDetailViewModel extends BaseViewModel {
     required this.addFavoriteRecipeUseCase,
     required this.removeFavoriteRecipeUseCase,
     required this.getFavoriteRecipesUseCase,
-  }) {
+  });
+
+  @override
+  void initViewModel() {
     _getFavoriteRecipes();
+    super.initViewModel();
   }
 
   final List<RecipeEntity> favoriteRecipes = [];

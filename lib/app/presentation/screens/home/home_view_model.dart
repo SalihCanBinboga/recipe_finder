@@ -33,4 +33,11 @@ class HomeViewModel extends BaseViewModel {
       },
     );
   }
+
+  void onFavouriteRecipesPressed(BuildContext context) {
+    RouteManager.navigateTo(
+      context,
+      Routes.favouriteRecipes,
+    );
+  }
 }

@@ -4,20 +4,17 @@ import 'package:provider/provider.dart' show ChangeNotifierProvider, Provider;
 
 import 'base_view_model.dart';
 
-class BaseView<T extends BaseViewModel> extends StatelessWidget {
-  final T Function(BuildContext) viewModel;
-  final Widget Function(BuildContext, T) builder;
+abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
+  const BaseView({super.key});
 
-  const BaseView({
-    required this.viewModel,
-    required this.builder,
-    super.key,
-  });
+  T viewModel(BuildContext context);
+
+  Widget builder(BuildContext context, T viewModel);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
-      create: viewModel,
+      create: (context) => viewModel(context),
       child: Builder(
         builder: (context) {
           final viewModel = Provider.of<T>(context);

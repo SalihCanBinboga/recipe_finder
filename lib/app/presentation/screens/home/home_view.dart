@@ -5,38 +5,48 @@ import 'package:recipe_finder/app/core/base/base_view.dart';
 import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
 import 'package:recipe_finder/app/presentation/screens/home/home_view_model.dart';
 
-class HomeView extends StatelessWidget {
+import '../../components/recipe_list_item_widget.dart';
+
+class HomeView extends BaseView<HomeViewModel> {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BaseView<HomeViewModel>(
-      viewModel: (_) => HomeViewModel(),
-      builder: (_, HomeViewModel viewModel) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Home'),
+  Widget builder(BuildContext context, HomeViewModel viewModel) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              viewModel.onFavouriteRecipesPressed(context);
+            },
           ),
-          body: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  onChanged: viewModel.onSearchTextChanged,
-                  decoration: const InputDecoration(
-                    hintText: 'Search',
-                  ),
-                ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              onChanged: viewModel.onSearchTextChanged,
+              decoration: const InputDecoration(
+                hintText: 'Search',
               ),
-              const Gap(16),
-              const Expanded(
-                child: _RecipeListWidget(),
-              ),
-            ],
+            ),
           ),
-        );
-      },
+          const Gap(16),
+          const Expanded(
+            child: _RecipeListWidget(),
+          ),
+        ],
+      ),
     );
+  }
+
+  @override
+  HomeViewModel viewModel(BuildContext context) {
+    return HomeViewModel();
   }
 }
 
@@ -53,23 +63,10 @@ class _RecipeListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final RecipeEntity recipe = viewModel.recipes[index];
 
-        return ListTile(
-          title: Text(recipe.name),
-          leading: Hero(
-            tag: recipe.id,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                recipe.imageUrl,
-              ),
-            ),
-          ),
-          minVerticalPadding: 32,
-          onTap: () {
-            viewModel.onRecipePressed(
-              context: context,
-              recipe: recipe,
-            );
+        return RecipeListItemWidget(
+          recipe: recipe,
+          onRecipePressed: (recipe) {
+            viewModel.onRecipePressed(context: context, recipe: recipe);
           },
         );
       },

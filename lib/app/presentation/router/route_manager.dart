@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_finder/app/presentation/screens/favourite_recipes/favourite_recipes_view.dart';
 import 'package:recipe_finder/app/presentation/screens/route_not_found/route_not_found_view.dart';
 
 import '../screens/home/home_view.dart';
@@ -11,7 +12,7 @@ class RouteManager {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final route = Routes.fromRouteSettings(settings);
 
-    late WidgetBuilder builder;
+    WidgetBuilder? builder;
 
     switch (route) {
       case Routes.home:
@@ -20,8 +21,12 @@ class RouteManager {
       case Routes.recipeDetail:
         builder = (_) => const RecipeDetailView();
         break;
-      default:
+      case Routes.favouriteRecipes:
+        builder = (_) => const FavouriteRecipesView();
+        break;
+      case Routes.notFound:
         builder = (_) => const RouteNotFoundView();
+        break;
     }
 
     return MaterialPageRoute(

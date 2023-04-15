@@ -2,7 +2,9 @@ import 'package:flutter/material.dart' show RouteSettings;
 
 enum Routes {
   home('/'),
-  recipeDetail('/recipe-detail');
+  notFound('/not-found'),
+  recipeDetail('/recipe-detail'),
+  favouriteRecipes('/favourite-recipes');
 
   const Routes(this.path);
 
@@ -11,6 +13,7 @@ enum Routes {
   static Routes fromRouteSettings(RouteSettings settings) {
     return Routes.values.firstWhere(
       (route) => route.path == settings.name,
+      orElse: () => Routes.notFound,
     );
   }
 }
