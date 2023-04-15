@@ -30,13 +30,6 @@ class RecipeRepositoryImpl implements RecipeRepository {
   }
 
   @override
-  Future<RecipeEntity> getRecipeDetails(String recipeId) async {
-    final result = await _remoteDataSource.getRecipe(recipeId: recipeId);
-    final recipe = RecipeResponse.fromJson(result);
-    return RecipeEntity.fromRecipeResponse(recipe);
-  }
-
-  @override
   Future<void> removeFavoriteRecipe(RecipeEntity recipe) {
     return _localFavoriteDataSource.removeRecipe(recipe.id);
   }

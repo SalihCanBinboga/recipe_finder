@@ -10,12 +10,6 @@ class RemoteRecipeDataSourceImpl extends RemoteRecipeDataSource {
   RemoteRecipeDataSourceImpl(this._httpClient);
 
   @override
-  Future<Map<String, dynamic>> getRecipe({required String recipeId}) async {
-    final response = await _httpClient.get(path: '/$recipeId');
-    return response.data;
-  }
-
-  @override
   Future<Map<String, dynamic>> searchRecipes({
     required String query,
   }) async {

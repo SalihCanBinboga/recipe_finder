@@ -5,8 +5,6 @@ abstract class RecipeRepository {
     required String query,
   });
 
-  Future<RecipeEntity> getRecipeDetails(String recipeId);
-
   Future<Iterable<RecipeEntity>> getFavoriteRecipes();
 
   Future<void> addFavoriteRecipe(RecipeEntity recipe);
