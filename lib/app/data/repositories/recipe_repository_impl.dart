@@ -24,10 +24,8 @@ class RecipeRepositoryImpl implements RecipeRepository {
   Future<Iterable<RecipeEntity>> getFavoriteRecipes() async {
     final result = await _localFavoriteDataSource.getFavoriteRecipes();
 
-    final recipes = result.map((recipe) => RecipeResponse.fromJson(recipe));
-
-    return recipes.map(
-      (recipe) => RecipeEntity.fromRecipeResponse(recipe),
+    return result.map(
+      (recipe) => RecipeEntity.fromJson(recipe),
     );
   }
 

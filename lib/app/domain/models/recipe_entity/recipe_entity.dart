@@ -37,4 +37,14 @@ class RecipeEntity {
       _$RecipeEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecipeEntityToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RecipeEntity &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

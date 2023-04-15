@@ -46,7 +46,11 @@ class _ReactiveBaseViewState<T extends BaseViewModel, U>
       create: (context) {
         return viewModel;
       },
-      child: widget.build(context, viewModel),
+      child: Consumer<T>(
+        builder: (BuildContext context, _, __) {
+          return widget.build(context, viewModel);
+        },
+      ),
     );
   }
 }

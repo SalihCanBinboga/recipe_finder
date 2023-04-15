@@ -7,10 +7,12 @@ import '../repositories/recipe_repository.dart';
 @LazySingleton()
 class SearchRecipesUseCase {
   final RecipeRepository repository;
+  final DebounceManager debounceManager;
 
-  SearchRecipesUseCase({required this.repository});
-
-  final DebounceManager debounceManager = DebounceManager();
+  SearchRecipesUseCase({
+    required this.repository,
+    required this.debounceManager,
+  });
 
   void call({
     required final String query,

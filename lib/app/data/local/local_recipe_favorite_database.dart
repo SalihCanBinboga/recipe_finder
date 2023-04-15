@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_finder/app/data/data_sources/local/local_recipe_favorite_data_source.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data_sources/constants/local_storage_keys.dart';
 
@@ -14,59 +15,87 @@ class LocalRecipeFavoriteDatabase extends LocalRecipeFavoriteDataSource {
   factory LocalRecipeFavoriteDatabase() => _instance;
 
   LocalRecipeFavoriteDatabase._internal() {
-    _initHive();
+    _initLocalDatabase();
   }
 
-  Box? _box;
+  SharedPreferences? _database;
 
-  final Completer<Box> _hiveInitializer = Completer<Box>();
+  final Completer<SharedPreferences> _dbInitializer =
+      Completer<SharedPreferences>();
 
-  Future<void> _initHive() async {
-    _box = await Hive.openBox(LocalStorageKeys.recipes.name);
-    _hiveInitializer.complete(_box);
+  Future<void> _initLocalDatabase() async {
+    _database = await SharedPreferences.getInstance();
+    _dbInitializer.complete(_database);
   }
 
   @override
   Future<List<Map<String, dynamic>>> getFavoriteRecipes() async {
-    await _hiveInitializer.future;
+    await _dbInitializer.future;
 
-    final List<Map<String, dynamic>> recipes = [];
-    final localRecipes = _box!.get(LocalStorageKeys.recipes.name);
+    final String? localRecipes = _database!.getString(
+      LocalStorageKeys.recipes.name,
+    );
 
-    if (localRecipes != null) {
-      recipes.addAll(localRecipes);
+    if (localRecipes == null) {
+      return [];
+    } else {
+      final List<dynamic> localRecipesList = json.decode(localRecipes);
+
+      return localRecipesList
+          .map(
+            (e) => e as Map<String, dynamic>,
+          )
+          .toList();
     }
-
-    return recipes;
   }
 
   @override
   Future<void> removeRecipe(String recipeId) async {
-    await _hiveInitializer.future;
+    await _dbInitializer.future;
 
-    final localRecipes = _box!.get(LocalStorageKeys.recipes.name);
+    final String? localRecipes = _database!.getString(
+      LocalStorageKeys.recipes.name,
+    );
 
-    if (localRecipes != null) {
-      final List<Map<String, dynamic>> recipes = [];
-      recipes.addAll(localRecipes);
-      recipes.removeWhere((recipe) => recipe['id'] == recipeId);
-      await _box!.put(LocalStorageKeys.recipes.name, recipes);
+    if (localRecipes == null) {
+      return;
+    } else {
+      final List<dynamic> localRecipesList = json.decode(localRecipes);
+
+      final recipeIndex = localRecipesList.indexWhere(
+        (element) => element['id'] == recipeId,
+      );
+
+      if (recipeIndex == -1) {
+        return;
+      }
+
+      localRecipesList.removeAt(recipeIndex);
+      final encodedRecipes = json.encode(localRecipesList);
+
+      await _database!.setString(LocalStorageKeys.recipes.name, encodedRecipes);
     }
   }
 
   @override
   Future<void> saveRecipe(Map<String, dynamic> recipe) async {
-    await _hiveInitializer.future;
+    await _dbInitializer.future;
 
-    final localRecipes = _box!.get(LocalStorageKeys.recipes.name);
+    final String? localRecipes = _database!.getString(
+      LocalStorageKeys.recipes.name,
+    );
 
-    if (localRecipes != null) {
-      final List<Map<String, dynamic>> recipes = [];
-      recipes.addAll(localRecipes);
-      recipes.add(recipe);
-      await _box!.put(LocalStorageKeys.recipes.name, recipes);
+    if (localRecipes == null) {
+      final localRecipesList = <Map<String, dynamic>>[];
+      localRecipesList.add(recipe);
+      final encodedRecipes = json.encode(localRecipesList);
+      await _database!.setString(LocalStorageKeys.recipes.name, encodedRecipes);
     } else {
-      await _box!.put(LocalStorageKeys.recipes.name, [recipe]);
+      final List<dynamic> localRecipesList = json.decode(localRecipes);
+
+      localRecipesList.add(recipe);
+      final encodedRecipes = json.encode(localRecipesList);
+      await _database!.setString(LocalStorageKeys.recipes.name, encodedRecipes);
     }
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:recipe_finder/app/core/base/reactive_base_view.dart';
+import 'package:recipe_finder/app/domain/usecases/remove_favorite_recipe_use_case.dart';
+import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 
 import '../../../domain/models/recipe_entity/recipe_entity.dart';
+import '../../../domain/usecases/add_favorite_recipe_use_case.dart';
+import '../../../domain/usecases/get_favorite_recipes_use_case.dart';
 import 'recipe_detail_view_model.dart';
 
 class RecipeDetailView
@@ -24,19 +28,49 @@ class RecipeDetailView
           ),
           child: Column(
             children: [
-              Hero(
-                tag: viewModel.recipe.id,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                  child: Image.network(
-                    viewModel.recipe.imageUrl,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                    height: 300,
-                  ),
+              SizedBox(
+                width: double.infinity,
+                height: 300,
+                child: Stack(
+                  children: [
+                    Hero(
+                      tag: viewModel.recipe.id,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                        ),
+                        child: Image.network(
+                          viewModel.recipe.imageUrl,
+                          fit: BoxFit.fill,
+                          width: double.infinity,
+                          height: 300,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            bottomRight: Radius.circular(16),
+                          ),
+                        ),
+                        child: IconButton(
+                          icon: Icon(
+                            viewModel.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                          onPressed: viewModel.toggleFavorite,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const Gap(8),
@@ -91,8 +125,15 @@ class RecipeDetailView
   RecipeDetailViewModel createViewModel({
     required RecipeEntity routeArgument,
   }) {
+    final addUseCase = getIt<AddFavoriteRecipeUseCase>();
+    final getFavoritesUseCase = getIt<GetFavoriteRecipesUseCase>();
+    final removeUseCase = getIt<RemoveFavoriteRecipe>();
+
     return RecipeDetailViewModel(
       recipe: routeArgument,
+      addFavoriteRecipeUseCase: addUseCase,
+      getFavoriteRecipesUseCase: getFavoritesUseCase,
+      removeFavoriteRecipeUseCase: removeUseCase,
     );
   }
 }
