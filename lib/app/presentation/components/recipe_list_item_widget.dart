@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/recipe_entity/recipe_entity.dart';
@@ -20,8 +21,14 @@ class RecipeListItemWidget extends StatelessWidget {
         tag: recipe.id,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            recipe.imageUrl,
+          child: CachedNetworkImage(
+            imageUrl: recipe.imageUrl,
+            progressIndicatorBuilder: (context, url, downloadProgress) {
+              return CircularProgressIndicator(
+                value: downloadProgress.progress,
+              );
+            },
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
       ),
