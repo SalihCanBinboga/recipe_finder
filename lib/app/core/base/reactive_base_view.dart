@@ -44,6 +44,7 @@ class _ReactiveBaseViewState<T extends BaseViewModel, U>
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
       create: (context) {
+        viewModel.setContext(context);
         return viewModel;
       },
       child: Consumer<T>(

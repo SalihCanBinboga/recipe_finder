@@ -18,9 +18,7 @@ class HomeView extends BaseView<HomeViewModel> {
         actions: [
           IconButton(
             icon: const Icon(Icons.favorite),
-            onPressed: () {
-              viewModel.onFavouriteRecipesPressed(context);
-            },
+            onPressed: viewModel.onFavouriteRecipesPressed,
           ),
         ],
       ),
@@ -65,9 +63,7 @@ class _RecipeListWidget extends StatelessWidget {
 
         return RecipeListItemWidget(
           recipe: recipe,
-          onRecipePressed: (recipe) {
-            viewModel.onRecipePressed(context: context, recipe: recipe);
-          },
+          onRecipePressed: viewModel.onRecipePressed,
         );
       },
     );

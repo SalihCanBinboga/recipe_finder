@@ -24,9 +24,7 @@ class FavouriteRecipesView extends BaseView<FavouriteRecipesViewModel> {
                 final recipe = viewModel.favoriteRecipes[index];
                 return RecipeListItemWidget(
                   recipe: recipe,
-                  onRecipePressed: (p0) {
-                    viewModel.onRecipePressed(recipe, context);
-                  },
+                  onRecipePressed: viewModel.onRecipePressed,
                 );
               },
             ),

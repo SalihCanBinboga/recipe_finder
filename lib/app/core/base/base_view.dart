@@ -14,7 +14,11 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
-      create: (context) => viewModel(context),
+      create: (context) {
+        final viewModel = this.viewModel(context);
+        viewModel.setContext(context);
+        return viewModel;
+      },
       child: Builder(
         builder: (context) {
           final viewModel = Provider.of<T>(context);
