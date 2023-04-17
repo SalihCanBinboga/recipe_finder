@@ -5,7 +5,8 @@ import 'app/init/recipe_finder_app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureDependencies();
+  await configureDependencies();
+  await getIt.allReady();
 
   runApp(const RecipeFinderApp());
 }

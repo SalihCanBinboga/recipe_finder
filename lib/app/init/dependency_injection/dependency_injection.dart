@@ -13,4 +13,4 @@ final getIt = GetIt.instance;
   includeMicroPackages: true,
   throwOnMissingDependencies: true,
 )
-void configureDependencies() => getIt.startInjection();
+Future<void> configureDependencies() async => await getIt.startInjection();
