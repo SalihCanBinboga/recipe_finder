@@ -9,6 +9,11 @@ Recipe Finder is a mobile application that allows users to search for recipes ba
 - Add to favorites: Users can add recipes they like to their favorites.
 - Search history: Users can view their previous searches and perform them again.
 
+## To-do
+- Add a "Random Recipe" feature for users to find a recipe randomly.
+- Filter search results by dietary requirements.
+- Add a recipe-sharing feature.
+
 ## Used Packages
 - [dio](https://pub.dev/packages/dio "dio"): A powerful HTTP client for Dart, used for making HTTP requests.
 - [json_annotation](https://pub.dev/packages/json_annotation "json_annotation"): A package used for JSON serialization/deserialization in Dart.
