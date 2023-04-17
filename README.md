@@ -25,6 +25,15 @@ To run the app, you can follow these steps:
 2. Run `flutter pub get` to install dependencies.
 3. Run `flutter run` to start the app.
 
+Note: To run the application, you need to add the following parameters when running the `flutter run` command:
+
+1. `--dart-define="app_id=your_app_id" `
+2. `--dart-define="app_key=your_app_key"`
+
+I used the following API for food recipes.
+[Edamam Recipe API](https://developer.edamam.com/edamam-docs-recipe-api "Edamam Recipe API")
+
+
 ## Code Generation
 This project uses code generation to reduce boilerplate code and improve development speed. The following tools are used:
 
