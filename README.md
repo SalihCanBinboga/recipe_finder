@@ -1,6 +1,8 @@
 # Recipe Finder
 Recipe Finder is a mobile application that allows users to search for recipes based on keywords and view recipe details. The app also allows users to add recipes to their favorites and stores their search history.
 
+![RecipeFinderDemo](assets/readme/example_presentation.gif)
+
 ## Features
 - Recipe search: Users can search for recipes using keywords.
 - Recipe details: Users can view details for any recipe by clicking on it.
