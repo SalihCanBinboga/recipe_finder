@@ -41,7 +41,7 @@ class HomeViewModel extends BaseViewModel {
 
   void onFavouriteRecipesPressed() {
     navigateTo(
-      Routes.recipeDetail,
+      Routes.favouriteRecipes,
     );
   }
 
