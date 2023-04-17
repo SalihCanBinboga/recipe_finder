@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RouteNotFoundView extends StatefulWidget {
-  const RouteNotFoundView({Key? key}) : super(key: key);
+  const RouteNotFoundView({super.key});
 
   @override
   State<RouteNotFoundView> createState() => _RouteNotFoundViewState();

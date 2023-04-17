@@ -10,4 +10,6 @@ abstract class RecipeRepository {
   Future<void> addFavoriteRecipe(RecipeEntity recipe);
 
   Future<void> removeFavoriteRecipe(RecipeEntity recipe);
+
+  Future<Iterable<RecipeEntity>> getRecipes();
 }

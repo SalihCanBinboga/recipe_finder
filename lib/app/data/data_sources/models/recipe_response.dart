@@ -31,7 +31,7 @@ class RecipeResponse {
   });
 
   factory RecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$RecipeResponseFromJson(json['recipe']);
+      _$RecipeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecipeResponseToJson(this);
 
