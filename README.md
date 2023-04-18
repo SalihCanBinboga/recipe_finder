@@ -61,6 +61,8 @@ If you encounter any issues with code generation, try running the following comm
 flutter pub run build_runner clean
 ```
 
-
 ## Contributing
 Contributions are always welcome! If you find any bugs or want to suggest new features, feel free to open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/SalihCanBinboga/recipe_finder/blob/master/LICENSE "LICENSE") file for details.
