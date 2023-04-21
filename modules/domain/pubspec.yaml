@@ -1,4 +1,4 @@
-name: data
+name: domain
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -7,18 +7,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # HTTP Package
-  dio: ^5.1.1
   # JSON Annotation Package
   json_annotation: ^4.8.0
-  # Local Database Package
-  sqflite: ^2.2.6
-  shared_preferences: ^2.1.0
   # Dependency Injection
   injectable: ^2.1.1
 
-  domain:
-    path: ../domain
+  core:
+    path: ../core
 
 dev_dependencies:
   flutter_test:

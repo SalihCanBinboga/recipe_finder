@@ -1,9 +1,5 @@
 import 'package:core/base/base_view_model.dart';
-import 'package:recipe_finder/app/domain/usecases/remove_favorite_recipe_use_case.dart';
-
-import '../../../domain/models/recipe_entity/recipe_entity.dart';
-import '../../../domain/usecases/add_favorite_recipe_use_case.dart';
-import '../../../domain/usecases/get_favorite_recipes_use_case.dart';
+import 'package:domain/domain.dart';
 
 class RecipeDetailViewModel extends BaseViewModel {
   final RecipeEntity recipe;

@@ -1,11 +1,10 @@
 import 'package:core/base/base_view_model.dart';
-import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
+import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 import 'package:recipe_finder/app/presentation/router/routes.dart';
 
-import '../../../domain/usecases/get_last_query_recipes_use_case.dart';
-import '../../../domain/usecases/search_recipes_use_case.dart';
-
+@injectable
 class HomeViewModel extends BaseViewModel {
   final GetLastQueryRecipesUseCase getLastQueryRecipesUseCase;
 

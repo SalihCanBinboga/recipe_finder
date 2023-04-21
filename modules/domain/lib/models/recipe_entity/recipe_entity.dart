@@ -1,4 +1,3 @@
-import 'package:data/data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'recipe_entity.g.dart';
@@ -20,17 +19,6 @@ class RecipeEntity {
     required this.ingredientLines,
     required this.url,
   });
-
-  factory RecipeEntity.fromRecipeResponse(RecipeResponse recipe) {
-    return RecipeEntity(
-      id: recipe.id,
-      name: recipe.name,
-      imageUrl: recipe.imageUrl,
-      ingredients: recipe.ingredients.map((e) => e.food).toList(),
-      ingredientLines: recipe.ingredientLines,
-      url: recipe.url,
-    );
-  }
 
   factory RecipeEntity.fromJson(Map<String, dynamic> json) =>
       _$RecipeEntityFromJson(json);

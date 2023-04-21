@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/models/recipe_entity/recipe_entity.dart';
 
 class RecipeListItemWidget extends StatelessWidget {
   const RecipeListItemWidget({
