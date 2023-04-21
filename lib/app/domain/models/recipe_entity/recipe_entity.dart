@@ -1,6 +1,5 @@
+import 'package:data/data.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../data/data_sources/models/recipe_response.dart';
 
 part 'recipe_entity.g.dart';
 

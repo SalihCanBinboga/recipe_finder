@@ -1,4 +1,4 @@
-import 'package:recipe_finder/app/core/base/base_view_model.dart';
+import 'package:core/base/base_view_model.dart';
 import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 import 'package:recipe_finder/app/presentation/router/routes.dart';
@@ -21,7 +21,7 @@ class HomeViewModel extends BaseViewModel {
 
   void onRecipePressed(RecipeEntity recipe) {
     navigateTo(
-      Routes.recipeDetail,
+      Routes.recipeDetail.path,
       arguments: recipe,
     );
   }
@@ -41,7 +41,7 @@ class HomeViewModel extends BaseViewModel {
 
   void onFavouriteRecipesPressed() {
     navigateTo(
-      Routes.favouriteRecipes,
+      Routes.favouriteRecipes.path,
     );
   }
 

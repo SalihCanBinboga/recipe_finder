@@ -1,6 +1,6 @@
+import 'package:core/utils/debounce_manager.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/utils/debounce_manager.dart';
 import '../models/recipe_entity/recipe_entity.dart';
 import '../repositories/recipe_repository.dart';
 

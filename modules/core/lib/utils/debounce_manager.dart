@@ -8,20 +8,12 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:injectable/injectable.dart';
-
-@lazySingleton
 class DebounceManager {
   DebounceManager({
     this.milliseconds = 500,
     this.maxPendingEvent,
   }) {
     _duration = Duration(milliseconds: milliseconds);
-  }
-
-  @factoryMethod
-  static DebounceManager create() {
-    return DebounceManager();
   }
 
   final int milliseconds;

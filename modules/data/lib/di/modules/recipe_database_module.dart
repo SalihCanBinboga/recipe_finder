@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:recipe_finder/app/data/data_sources/constants/local_storage_keys.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../../data_sources/constants/local_storage_keys.dart';
 
 @module
 abstract class RecipeDatabaseModule {

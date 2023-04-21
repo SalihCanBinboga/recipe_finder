@@ -1,4 +1,4 @@
-import 'package:recipe_finder/app/core/base/base_view_model.dart';
+import 'package:core/base/base_view_model.dart';
 import 'package:recipe_finder/app/domain/usecases/remove_favorite_recipe_use_case.dart';
 
 import '../../../domain/models/recipe_entity/recipe_entity.dart';

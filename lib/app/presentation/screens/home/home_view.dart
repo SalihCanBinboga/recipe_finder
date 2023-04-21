@@ -1,7 +1,7 @@
+import 'package:core/base/base_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_finder/app/core/base/base_view.dart';
 import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 import 'package:recipe_finder/app/presentation/screens/home/home_view_model.dart';

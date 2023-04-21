@@ -1,5 +1,5 @@
+import 'package:core/base/base_view_model.dart';
 import 'package:injectable/injectable.dart';
-import 'package:recipe_finder/app/core/base/base_view_model.dart';
 import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
 import 'package:recipe_finder/app/presentation/router/routes.dart';
 
@@ -29,7 +29,7 @@ class FavouriteRecipesViewModel extends BaseViewModel {
     RecipeEntity recipe,
   ) async {
     await navigateTo(
-      Routes.recipeDetail,
+      Routes.recipeDetail.path,
       arguments: recipe,
     );
     _getFavoriteRecipes();
