@@ -177,6 +177,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  core:
+    dependency: "direct main"
+    description:
+      path: "modules/core"
+      relative: true
+    source: path
+    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -838,5 +845,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.5 <3.0.0"
+  dart: ">=2.19.6 <3.0.0"
   flutter: ">=3.7.0"

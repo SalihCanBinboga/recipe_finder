@@ -28,6 +28,10 @@ dependencies:
   injectable: ^2.1.1
 
 
+  core:
+    path: modules/core
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

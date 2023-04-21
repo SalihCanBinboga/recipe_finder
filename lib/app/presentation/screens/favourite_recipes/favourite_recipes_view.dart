@@ -1,5 +1,5 @@
+import 'package:core/base/base_view.dart';
 import 'package:flutter/material.dart';
-import 'package:recipe_finder/app/core/base/base_view.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 import 'package:recipe_finder/app/presentation/components/recipe_list_item_widget.dart';
 

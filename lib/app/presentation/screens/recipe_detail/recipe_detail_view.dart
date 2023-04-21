@@ -1,6 +1,6 @@
+import 'package:core/base/reactive_base_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:recipe_finder/app/core/base/reactive_base_view.dart';
 import 'package:recipe_finder/app/domain/usecases/remove_favorite_recipe_use_case.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 
