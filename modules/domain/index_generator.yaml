@@ -1,0 +1,7 @@
+index_generator:
+  exclude:
+    - '**.g.dart'
+  indexes:
+    - path: lib
+      name: 'exports'
+      library: data

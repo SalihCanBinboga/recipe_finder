@@ -1,8 +1,7 @@
 import 'package:data/data.dart';
+import 'package:domain/models/recipe_entity/recipe_entity.dart';
+import 'package:domain/repositories/recipe_repository.dart';
 import 'package:injectable/injectable.dart';
-
-import '../models/recipe_entity/recipe_entity.dart';
-import 'recipe_repository.dart';
 
 @LazySingleton(as: RecipeRepository)
 class RecipeRepositoryImpl implements RecipeRepository {
@@ -54,7 +53,7 @@ class RecipeRepositoryImpl implements RecipeRepository {
     await _recipesCacheDatabase.cacheRecipes(recipes);
 
     return recipes.map(
-      (recipe) => RecipeEntity.fromRecipeResponse(recipe),
+      (recipe) => recipe.toRecipeEntity(),
     );
   }
 
@@ -63,7 +62,7 @@ class RecipeRepositoryImpl implements RecipeRepository {
     final result = await _recipesCacheDatabase.getRecipes();
 
     return result.map(
-      (recipe) => RecipeEntity.fromRecipeResponse(recipe),
+      (recipe) => recipe.toRecipeEntity(),
     );
   }
 }

@@ -24,6 +24,8 @@ dependencies:
   # MODULES
   core:
     path: modules/core
+  domain:
+    path: modules/domain
   data:
     path: modules/data
 

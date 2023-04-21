@@ -1,12 +1,11 @@
 import 'package:core/base/base_view.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_finder/app/domain/models/recipe_entity/recipe_entity.dart';
 import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
 import 'package:recipe_finder/app/presentation/screens/home/home_view_model.dart';
 
-import '../../../domain/usecases/get_last_query_recipes_use_case.dart';
 import '../../components/recipe_list_item_widget.dart';
 
 class HomeView extends BaseView<HomeViewModel> {
@@ -46,9 +45,7 @@ class HomeView extends BaseView<HomeViewModel> {
 
   @override
   HomeViewModel viewModel(BuildContext context) {
-    return HomeViewModel(
-      getIt<GetLastQueryRecipesUseCase>(),
-    );
+    return getIt<HomeViewModel>();
   }
 }
 
