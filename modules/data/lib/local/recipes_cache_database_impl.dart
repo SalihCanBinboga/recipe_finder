@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
-import 'package:recipe_finder/app/data/data_sources/local/recipes_cache_database.dart';
-import 'package:recipe_finder/app/data/data_sources/models/recipe_response.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../data_sources/constants/local_storage_keys.dart';
+import '../data_sources/local/recipes_cache_database.dart';
+import '../data_sources/models/recipe_response.dart';
 
 @LazySingleton(as: RecipesCacheDatabase)
 class RecipesCacheDatabaseImpl extends RecipesCacheDatabase {

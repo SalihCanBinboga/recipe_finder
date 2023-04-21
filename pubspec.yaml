@@ -9,28 +9,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # HTTP Package
-  dio: ^5.1.1
   # JSON Annotation Package
   json_annotation: ^4.8.0
-  # Local Database Package
-  sqflite: ^2.2.6
-  shared_preferences: ^2.1.0
   # Provider Inherited Widget Declaration
   provider: ^6.0.5
   # Adding gaps inside
   gap: ^3.0.0
   # Image Caching
   cached_network_image: ^3.2.3
-
   # Dependency Injection
   get_it: ^7.2.0
   injectable: ^2.1.1
 
-
+  # MODULES
   core:
     path: modules/core
-
+  data:
+    path: modules/data
 
 dev_dependencies:
   flutter_test:

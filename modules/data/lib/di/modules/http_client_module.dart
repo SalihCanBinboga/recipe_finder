@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../data/data_sources/constants/api_keys.dart';
+import '../../data_sources/constants/api_keys.dart';
 
 @module
 abstract class HttpClientModule {

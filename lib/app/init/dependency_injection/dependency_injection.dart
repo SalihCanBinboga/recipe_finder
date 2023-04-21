@@ -1,3 +1,4 @@
+import 'package:data/data.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,5 +13,8 @@ final getIt = GetIt.instance;
   usesNullSafety: true,
   includeMicroPackages: true,
   throwOnMissingDependencies: true,
+  externalPackageModulesBefore: [
+    ExternalModule(DataPackageModule),
+  ],
 )
 Future<void> configureDependencies() async => await getIt.startInjection();

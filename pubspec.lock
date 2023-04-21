@@ -200,8 +200,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.5"
-  dio:
+  data:
     dependency: "direct main"
+    description:
+      path: "modules/data"
+      relative: true
+    source: path
+    version: "0.0.1"
+  dio:
+    dependency: transitive
     description:
       name: dio
       sha256: "0894a098594263fe1caaba3520e3016d8a855caeb010a882273189cca10f11e9"
@@ -600,7 +607,7 @@ packages:
     source: hosted
     version: "0.27.7"
   shared_preferences:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shared_preferences
       sha256: "858aaa72d8f61637d64e776aca82e1c67e6d9ee07979123c5d17115031c1b13b"
@@ -701,7 +708,7 @@ packages:
     source: hosted
     version: "1.9.1"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       sha256: "500d6fec583d2c021f2d25a056d96654f910662c64f836cd2063167b8f1fa758"
