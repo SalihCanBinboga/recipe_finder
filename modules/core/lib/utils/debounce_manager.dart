@@ -6,7 +6,6 @@
  */
 
 import 'dart:async';
-import 'dart:ui';
 
 class DebounceManager {
   DebounceManager({
@@ -23,7 +22,7 @@ class DebounceManager {
 
   late final Duration _duration;
 
-  void run(VoidCallback action) {
+  void run(void Function() action) {
     if (maxPendingEvent != null && _pendingEventCount >= maxPendingEvent!) {
       _timer?.cancel();
       _pendingEventCount = 0;

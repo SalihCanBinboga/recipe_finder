@@ -5,8 +5,8 @@ import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../data_sources/constants/local_storage_keys.dart';
-import '../data_sources/local/recipes_cache_database.dart';
-import '../data_sources/models/recipe_response.dart';
+
+import 'package:domain/domain.dart';
 
 @LazySingleton(as: RecipesCacheDatabase)
 class RecipesCacheDatabaseImpl extends RecipesCacheDatabase {
@@ -17,7 +17,7 @@ class RecipesCacheDatabaseImpl extends RecipesCacheDatabase {
   RecipesCacheDatabaseImpl(this._database);
 
   @override
-  Future<void> cacheRecipes(Iterable<RecipeResponse> recipes) async {
+  Future<void> cacheRecipes(Iterable<RecipeEntity> recipes) async {
     final expirationTime = DateTime.now().add(_cacheExpirationDuration);
     final cacheData = _CacheData(expirationTime, recipes);
     final cacheJson = jsonEncode(cacheData.toJson());
@@ -31,7 +31,7 @@ class RecipesCacheDatabaseImpl extends RecipesCacheDatabase {
   }
 
   @override
-  Future<Iterable<RecipeResponse>> getRecipes() async {
+  Future<Iterable<RecipeEntity>> getRecipes() async {
     final result = await _database.query(
       LocalStorageKeys.recipesCache.name,
       columns: ['data'],
@@ -59,14 +59,14 @@ class RecipesCacheDatabaseImpl extends RecipesCacheDatabase {
 
 class _CacheData {
   final DateTime expirationTime;
-  final Iterable<RecipeResponse> recipes;
+  final Iterable<RecipeEntity> recipes;
 
   _CacheData(this.expirationTime, this.recipes);
 
   factory _CacheData.fromJson(Map<String, dynamic> json) {
     final expirationTime = DateTime.parse(json['expirationTime']);
     final recipes = (json['recipes'] as List<dynamic>)
-        .map((e) => RecipeResponse.fromJson(e))
+        .map((e) => RecipeEntity.fromJson(e))
         .toList();
     return _CacheData(expirationTime, recipes);
   }

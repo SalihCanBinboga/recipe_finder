@@ -1,7 +1,7 @@
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data_sources/remote/http_client.dart';
-import '../data_sources/remote/remote_recipe_data_source.dart';
 
 @LazySingleton(as: RemoteRecipeDataSource)
 class RemoteRecipeDataSourceImpl extends RemoteRecipeDataSource {
