@@ -11,13 +11,14 @@ dependencies:
   json_annotation: ^4.8.0
   # Dependency Injection
   injectable: ^2.1.1
+  # Test Mocking
+  mockito: ^5.4.0
 
   core:
     path: ../core
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  test: ^1.24.2
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.6.1

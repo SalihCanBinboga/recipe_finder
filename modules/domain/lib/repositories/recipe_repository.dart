@@ -1,6 +1,16 @@
-import '../models/recipe_entity/recipe_entity.dart';
+import '../domain.dart';
 
 abstract class RecipeRepository {
+  final RemoteRecipeDataSource remoteDataSource;
+  final LocalRecipeFavoriteDataSource localFavoriteDataSource;
+  final RecipesCacheDatabase recipesCacheDatabase;
+
+  const RecipeRepository({
+    required this.remoteDataSource,
+    required this.localFavoriteDataSource,
+    required this.recipesCacheDatabase,
+  });
+
   Future<Iterable<RecipeEntity>> searchRecipes({
     required String query,
   });

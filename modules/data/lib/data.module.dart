@@ -8,23 +8,19 @@
 import 'dart:async' as _i2;
 
 import 'package:dio/dio.dart' as _i4;
-import 'package:domain/repositories/recipe_repository.dart' as _i13;
+import 'package:domain/domain.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i1;
-import 'package:shared_preferences/shared_preferences.dart' as _i10;
+import 'package:shared_preferences/shared_preferences.dart' as _i9;
 import 'package:sqflite/sqflite.dart' as _i3;
 
-import 'data.dart' as _i15;
-import 'data_sources/local/local_recipe_favorite_data_source.dart' as _i11;
-import 'data_sources/local/recipes_cache_database.dart' as _i6;
 import 'data_sources/remote/http_client.dart' as _i5;
-import 'data_sources/remote/remote_recipe_data_source.dart' as _i8;
-import 'di/modules/http_client_module.dart' as _i16;
-import 'di/modules/recipe_database_module.dart' as _i17;
-import 'di/modules/shared_preferences_module.dart' as _i18;
-import 'local/local_recipe_favorite_database.dart' as _i12;
+import 'di/modules/http_client_module.dart' as _i12;
+import 'di/modules/recipe_database_module.dart' as _i13;
+import 'di/modules/shared_preferences_module.dart' as _i14;
+import 'local/local_recipe_favorite_database.dart' as _i10;
 import 'local/recipes_cache_database_impl.dart' as _i7;
-import 'remote/remote_recipe_data_source_impl.dart' as _i9;
-import 'repositories/recipe_repository_impl.dart' as _i14;
+import 'remote/remote_recipe_data_source_impl.dart' as _i8;
+import 'repositories/recipe_repository_impl.dart' as _i11;
 
 class DataPackageModule extends _i1.MicroPackageModule {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -41,24 +37,24 @@ class DataPackageModule extends _i1.MicroPackageModule {
     gh.singleton<_i5.HttpClient>(_i5.HttpClient(gh<_i4.Dio>()));
     gh.lazySingleton<_i6.RecipesCacheDatabase>(
         () => _i7.RecipesCacheDatabaseImpl(gh<_i3.Database>()));
-    gh.lazySingleton<_i8.RemoteRecipeDataSource>(
-        () => _i9.RemoteRecipeDataSourceImpl(gh<_i5.HttpClient>()));
-    await gh.singletonAsync<_i10.SharedPreferences>(
+    gh.lazySingleton<_i6.RemoteRecipeDataSource>(
+        () => _i8.RemoteRecipeDataSourceImpl(gh<_i5.HttpClient>()));
+    await gh.singletonAsync<_i9.SharedPreferences>(
       () => sharedPreferencesModule.createSharedPreferences(),
       preResolve: true,
     );
-    gh.lazySingleton<_i11.LocalRecipeFavoriteDataSource>(
-        () => _i12.LocalRecipeFavoriteDatabase(gh<_i10.SharedPreferences>()));
-    gh.lazySingleton<_i13.RecipeRepository>(() => _i14.RecipeRepositoryImpl(
-          gh<_i15.RemoteRecipeDataSource>(),
-          gh<_i15.LocalRecipeFavoriteDataSource>(),
-          gh<_i15.RecipesCacheDatabase>(),
+    gh.lazySingleton<_i6.LocalRecipeFavoriteDataSource>(
+        () => _i10.LocalRecipeFavoriteDatabase(gh<_i9.SharedPreferences>()));
+    gh.lazySingleton<_i6.RecipeRepository>(() => _i11.RecipeRepositoryImpl(
+          remoteDataSource: gh<_i6.RemoteRecipeDataSource>(),
+          localFavoriteDataSource: gh<_i6.LocalRecipeFavoriteDataSource>(),
+          recipesCacheDatabase: gh<_i6.RecipesCacheDatabase>(),
         ));
   }
 }
 
-class _$HttpClientModule extends _i16.HttpClientModule {}
+class _$HttpClientModule extends _i12.HttpClientModule {}
 
-class _$RecipeDatabaseModule extends _i17.RecipeDatabaseModule {}
+class _$RecipeDatabaseModule extends _i13.RecipeDatabaseModule {}
 
-class _$SharedPreferencesModule extends _i18.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i14.SharedPreferencesModule {}

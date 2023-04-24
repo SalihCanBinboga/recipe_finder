@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data_sources/constants/local_storage_keys.dart';
-import '../data_sources/local/local_recipe_favorite_data_source.dart';
 
 @LazySingleton(as: LocalRecipeFavoriteDataSource)
 class LocalRecipeFavoriteDatabase extends LocalRecipeFavoriteDataSource {
