@@ -3,6 +3,8 @@
 Recipe Finder is a mobile application that allows users to search for recipes based on keywords and view recipe details.
 The app also allows users to add recipes to their favorites and stores their search history.
 
+![RecipeFinderDemo](assets/readme/example_presentation.gif)
+
 ## Keywords
 
 - DDD (Domain Driven Design)
@@ -15,8 +17,6 @@ The app also allows users to add recipes to their favorites and stores their sea
 - Flutter Navigation Management
 - Base classes for managing state
 - Unit tests (as long as possible): Implementation of unit tests for the business logic of the application
-
-![RecipeFinderDemo](assets/readme/example_presentation.gif)
 
 ## To-do
 
