@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
-      - name: Install dependencies
-        run: flutter pub get
-      - name: Analyze project source
-        run: dart analyze
+      - name: Install dependencies & Analyze project source
+        run: flutter pub get && dart analyze
       - name: Run tests
         run: dart test
