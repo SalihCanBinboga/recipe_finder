@@ -41,6 +41,11 @@ class RecipeDetailView
                           fit: BoxFit.fill,
                           width: double.infinity,
                           height: 300,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(Icons.error),
+                            );
+                          },
                         ),
                       ),
                     ),
