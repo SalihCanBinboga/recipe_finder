@@ -31,8 +31,7 @@ class HomeViewModel extends BaseViewModel {
     useCase(
       query: query,
       onResult: (List<RecipeEntity> response) {
-        recipes.clear();
-        recipes.addAll(response);
+        recipes.replaceRange(0, recipes.length, response);
         notifyListeners();
       },
     );
@@ -47,9 +46,7 @@ class HomeViewModel extends BaseViewModel {
   Future<void> getLastQueryRecipes() async {
     final useCase = getIt<GetLastQueryRecipesUseCase>();
     final result = await useCase();
-
-    recipes.clear();
-    recipes.addAll(result);
+    recipes.replaceRange(0, recipes.length, result);
     notifyListeners();
   }
 }
