@@ -1,3 +1,4 @@
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,10 +39,14 @@ class RecipeRepositoryImpl extends RecipeRepository {
 
     final recipeHits = result['hits'] as List<dynamic>;
 
-    final recipes = recipeHits.map(
-      (recipe) => RecipeEntity.fromJson(
+    final recipeResponses = recipeHits.map(
+      (recipe) => RecipeResponse.fromJson(
         recipe['recipe'],
       ),
+    );
+
+    final recipes = recipeResponses.map(
+      (recipe) => recipe.toRecipeEntity(),
     );
 
     await recipesCacheDatabase.cacheRecipes(recipes);
