@@ -13,7 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
+      - name: Generate All Modules
+        run: sh generate.sh
       - name: Install dependencies & Analyze project source
-        run: flutter pub get && dart analyze
+        run: dart analyze
       - name: Run tests
-        run: dart test
+        run: cd modules/domain && dart test
