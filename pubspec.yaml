@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # JSON Annotation Package
-  json_annotation: ^4.8.0
   # Provider Inherited Widget Declaration
   provider: ^6.0.5
   # Adding gaps inside
