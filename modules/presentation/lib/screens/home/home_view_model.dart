@@ -1,8 +1,9 @@
 import 'package:core/base/base_view_model.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
-import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
-import 'package:recipe_finder/app/presentation/router/routes.dart';
+
+import '../../presentation_instance.module.dart';
+import '../../router/routes.dart';
 
 @injectable
 class HomeViewModel extends BaseViewModel {

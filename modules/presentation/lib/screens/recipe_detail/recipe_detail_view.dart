@@ -2,7 +2,7 @@ import 'package:core/base/reactive_base_view.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
+import '../../presentation_instance.module.dart';
 import 'recipe_detail_view_model.dart';
 
 class RecipeDetailView

@@ -1,8 +1,8 @@
 import 'package:core/base/application_starter_widget.dart';
 import 'package:core/extension/context_extension.dart';
-import 'package:flutter/material.dart';
+import 'package:presentation/presentation.dart';
 
-import '../presentation/router/route_manager_impl.dart';
+import 'package:flutter/material.dart';
 
 class RecipeFinderApp extends StatelessWidget {
   const RecipeFinderApp({super.key});

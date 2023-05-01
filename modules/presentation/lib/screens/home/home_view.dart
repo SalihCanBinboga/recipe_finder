@@ -3,10 +3,10 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_finder/app/init/dependency_injection/dependency_injection.dart';
-import 'package:recipe_finder/app/presentation/screens/home/home_view_model.dart';
 
 import '../../components/recipe_list_item_widget.dart';
+import '../../presentation_instance.module.dart';
+import 'home_view_model.dart';
 
 class HomeView extends BaseView<HomeViewModel> {
   const HomeView({super.key});

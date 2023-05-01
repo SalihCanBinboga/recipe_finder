@@ -1,10 +1,10 @@
 import 'package:core/base/route_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:recipe_finder/app/presentation/screens/favourite_recipes/favourite_recipes_view.dart';
-import 'package:recipe_finder/app/presentation/screens/route_not_found/route_not_found_view.dart';
 
+import '../screens/favourite_recipes/favourite_recipes_view.dart';
 import '../screens/home/home_view.dart';
 import '../screens/recipe_detail/recipe_detail_view.dart';
+import '../screens/route_not_found/route_not_found_view.dart';
 import 'routes.dart';
 
 class RouteManagerImpl extends RouteManager {
