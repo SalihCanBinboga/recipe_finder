@@ -1,7 +1,11 @@
 library presentation;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+import 'package:injectable/injectable.dart';
+
+export 'exports.dart';
+
+@InjectableInit.microPackage(
+  preferRelativeImports: true,
+  usesNullSafety: true,
+)
+void initMicroPackage(GetItHelper helper) {}
