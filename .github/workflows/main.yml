@@ -1,0 +1,21 @@
+name: Dart
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+      - name: Generate All Modules
+        run: sh generate.sh
+      - name: Install dependencies & Analyze project source
+        run: dart analyze
+      - name: Run tests
+        run: cd modules/domain && dart test
