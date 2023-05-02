@@ -3,6 +3,7 @@ import 'package:core/extension/context_extension.dart';
 import 'package:presentation/presentation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:recipe_finder/app/init/main_build.dart';
 
 class RecipeFinderApp extends StatelessWidget {
   const RecipeFinderApp({super.key});
@@ -12,6 +13,7 @@ class RecipeFinderApp extends StatelessWidget {
     return ApplicationStarterWidget(
       routeManager: RouteManagerImpl(),
       app: (context) => MaterialApp(
+        builder: MainBuild.build,
         initialRoute: context.routeManager.initialRoute,
         onGenerateRoute: context.routeManager.generateRoute,
       ),
