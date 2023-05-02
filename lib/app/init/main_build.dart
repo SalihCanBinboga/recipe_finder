@@ -8,7 +8,9 @@ class MainBuild {
     return Column(
       children: [
         Expanded(child: child ?? const RouteNotFoundView()),
-        const ConnectivityWidget()
+        ConnectivityWidget(
+          child: child ?? const RouteNotFoundView(),
+        ),
       ],
     );
   }

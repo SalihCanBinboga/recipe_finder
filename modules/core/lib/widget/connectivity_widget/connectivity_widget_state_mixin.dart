@@ -7,12 +7,17 @@ mixin StateAwareMixin<T extends StatefulWidget> on State<T> {
   void initState() {
     super.initState();
     _networkChange = NetworkManagerImpl.instance;
-
     waitForScreen(() {
       _networkChange.handleNetworkChange((result) {
         _updateView(result);
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _networkChange.dispose();
+    super.dispose();
   }
 
   void waitForScreen(VoidCallback onComplete) {
