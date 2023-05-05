@@ -19,14 +19,16 @@ class BaseViewModel extends ChangeNotifier {
     String route, {
     dynamic arguments,
   }) async {
-    if (_context == null) {
+    final BuildContext? context = _context;
+
+    if (context == null) {
       return null;
     }
 
-    final routeManager = ApplicationStarter.ofRouteManager(_context!);
+    final routeManager = ApplicationStarter.ofRouteManager(context);
 
     return await routeManager.navigateTo(
-      _context!,
+      context,
       route,
       arguments: arguments,
     );

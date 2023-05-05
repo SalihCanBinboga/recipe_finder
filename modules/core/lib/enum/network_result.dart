@@ -12,9 +12,8 @@ enum NetworkResult {
       case ConnectivityResult.mobile:
       case ConnectivityResult.vpn:
         return NetworkResult.on;
+      case ConnectivityResult.other:
       case ConnectivityResult.none:
-        return NetworkResult.off;
-      default:
         return NetworkResult.off;
     }
   }

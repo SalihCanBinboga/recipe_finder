@@ -1,48 +1,63 @@
+import 'dart:async';
+
 import 'package:core/enum/network_result.dart';
 import 'package:core/utils/network_manager/base_network_manager.dart';
 import 'package:core/utils/network_manager/network_manager.dart';
+import 'package:core/extension/context_extension.dart';
+
 import 'package:flutter/material.dart';
+
 part 'connectivity_widget_state_mixin.dart';
 
 class ConnectivityWidget extends StatefulWidget {
-  const ConnectivityWidget({super.key, required this.child});
+  const ConnectivityWidget({required this.child, super.key});
 
   final Widget child;
+
   @override
   State<ConnectivityWidget> createState() => _ConnectivityWidgetState();
 }
 
 class _ConnectivityWidgetState extends State<ConnectivityWidget>
-    with StateAwareMixin {
+    with NetworkStateAwareMixin {
   @override
   Widget build(BuildContext context) {
-    // TODO: MAKE GLOBAL SIZES
-    Size size = MediaQuery.of(context).size;
+    final bool isNetworkUnavailable = networkResult == NetworkResult.off;
+
     return Stack(
-      children: [
+      children: <Widget>[
         widget.child,
-        _networkResult == NetworkResult.off
-            ? Positioned.fill(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Material(
-                    child: Container(
-                      height: size.height * .06,
-                      color: Colors.black,
-                      child: const Center(
-                        child: Text(
-                          "Please Check Internet Your Connection !",
-                          style: TextStyle(color: Colors.white),
-                          overflow: TextOverflow.visible,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
+        isNetworkUnavailable
+            ? const _CheckYourInternetConnectionWidget()
             : const SizedBox()
       ],
+    );
+  }
+}
+
+class _CheckYourInternetConnectionWidget extends StatelessWidget {
+  const _CheckYourInternetConnectionWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Material(
+          child: Container(
+            height: context.screenHeight * .06,
+            color: Colors.black,
+            child: const Center(
+              child: Text(
+                "Please check your internet connection!",
+                style: TextStyle(color: Colors.white),
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
