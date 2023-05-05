@@ -4,14 +4,16 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core/enum/network_result.dart';
 import 'package:core/utils/network_manager/base_network_manager.dart';
 
-class NetworkManagerImpl extends NetworkManager {
-  late final Connectivity _connectivity;
-  StreamSubscription<ConnectivityResult>? _subscription;
-  static NetworkManagerImpl? _instance;
-  static NetworkManagerImpl get instance =>
-      _instance ??= NetworkManagerImpl._();
+class NetworkStateManagerImpl extends NetworkStateManager {
+  static NetworkStateManagerImpl? _instance;
 
-  NetworkManagerImpl._() {
+  static NetworkStateManagerImpl get instance {
+    return _instance ??= NetworkStateManagerImpl._();
+  }
+
+  late final Connectivity _connectivity;
+
+  NetworkStateManagerImpl._() {
     _connectivity = Connectivity();
   }
 
@@ -22,14 +24,14 @@ class NetworkManagerImpl extends NetworkManager {
   }
 
   @override
-  void handleNetworkChange(NetworkCallBack onChange) {
-    _subscription = _connectivity.onConnectivityChanged.listen((event) {
-      onChange.call(NetworkResult.checkConnectivityResult(event));
-    });
+  Stream<NetworkResult> listenNetworkChange() {
+    return _connectivity.onConnectivityChanged.map(
+      (event) => NetworkResult.checkConnectivityResult(event),
+    );
   }
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _instance = null;
   }
 }

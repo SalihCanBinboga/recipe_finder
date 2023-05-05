@@ -2,8 +2,8 @@ import 'package:core/enum/network_result.dart';
 
 typedef NetworkCallBack = void Function(NetworkResult result);
 
-abstract class NetworkManager {
+abstract class NetworkStateManager {
   Future<NetworkResult> checkNetworkOneTime();
-  void handleNetworkChange(NetworkCallBack onChange);
+  Stream<NetworkResult> listenNetworkChange();
   void dispose();
 }

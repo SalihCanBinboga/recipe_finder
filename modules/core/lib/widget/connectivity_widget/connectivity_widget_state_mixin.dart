@@ -1,23 +1,17 @@
 part of 'connectivity_widget.dart';
 
-mixin StateAwareMixin<T extends StatefulWidget> on State<T> {
-  late final NetworkManager _networkChange;
-  NetworkResult? _networkResult;
+mixin NetworkStateAwareMixin on State<ConnectivityWidget> {
+  final NetworkStateManager _networkChange = NetworkStateManagerImpl.instance;
+  NetworkResult? networkResult;
+  StreamSubscription<NetworkResult>? _subscription;
+
   @override
   void initState() {
     super.initState();
-    _networkChange = NetworkManagerImpl.instance;
     waitForScreen(() {
-      _networkChange.handleNetworkChange((result) {
-        _updateView(result);
-      });
+      _subscription = _networkChange.listenNetworkChange().listen(_updateView);
+      _networkChange.checkNetworkOneTime().then(_updateView);
     });
-  }
-
-  @override
-  void dispose() {
-    _networkChange.dispose();
-    super.dispose();
   }
 
   void waitForScreen(VoidCallback onComplete) {
@@ -28,7 +22,13 @@ mixin StateAwareMixin<T extends StatefulWidget> on State<T> {
 
   void _updateView(NetworkResult result) {
     setState(() {
-      _networkResult = result;
+      networkResult = result;
     });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 }
