@@ -7,7 +7,7 @@ The app also allows users to add recipes to their favorites and stores their sea
 ![RecipeFinderDemo](assets/readme/example_presentation.gif)
 
 ### Modularization
-![RecipeFinderDemo](assets/readme/modul_diagram.png)
+![RecipeFinderDemo](assets/readme/module_diagram.png)
 
 ## Keywords
 
