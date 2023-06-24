@@ -1,3 +1,5 @@
+import 'package:core/base/screen_working_manager.dart';
+import 'package:core/extension/context_extension.dart';
 import 'package:flutter/material.dart' show BuildContext, ChangeNotifier;
 
 import 'application_starter.dart';
@@ -9,10 +11,12 @@ class BaseViewModel extends ChangeNotifier {
 
   void initViewModel() {}
 
+  ScreenWorkingManager? _screenWorkingManager;
   BuildContext? _context;
 
   void setContext(BuildContext context) {
     _context ??= context;
+    _screenWorkingManager ??= context.screenWorkingManager;
   }
 
   Future<T?> navigateTo<T extends Object?>(
