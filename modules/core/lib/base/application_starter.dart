@@ -2,8 +2,8 @@ import 'package:flutter/material.dart' show BuildContext, InheritedWidget;
 
 import '../utils/network_manager/base_network_manager.dart';
 import '../utils/network_manager/network_manager.dart';
+import '../widget/screen_working_manager/screen_working_manager.dart';
 import 'route_manager.dart';
-import 'screen_working_manager.dart';
 
 class ApplicationStarter extends InheritedWidget {
   const ApplicationStarter({

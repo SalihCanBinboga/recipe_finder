@@ -1,7 +1,7 @@
-import 'package:core/base/screen_working_manager.dart';
 import 'package:core/extension/context_extension.dart';
 import 'package:flutter/material.dart' show BuildContext, ChangeNotifier;
 
+import '../widget/screen_working_manager/screen_working_manager.dart';
 import 'application_starter.dart';
 
 class BaseViewModel extends ChangeNotifier {

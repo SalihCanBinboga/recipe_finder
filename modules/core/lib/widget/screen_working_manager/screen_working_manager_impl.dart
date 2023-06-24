@@ -1,5 +1,6 @@
-import 'package:core/base/screen_working_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'screen_working_manager.dart';
 
 class ScreenWorkingManagerImpl extends ScreenWorkingManager {
   ScreenWorkingManagerImpl({required super.context});

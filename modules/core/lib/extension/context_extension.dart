@@ -1,8 +1,8 @@
-import 'package:core/base/screen_working_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../base/application_starter.dart';
 import '../base/route_manager.dart';
+import '../widget/screen_working_manager/screen_working_manager.dart';
 
 extension BaseContextExtension on BuildContext {
   RouteManager get routeManager => ApplicationStarter.ofRouteManager(this);
