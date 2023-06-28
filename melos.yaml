@@ -10,3 +10,5 @@ scripts:
     exec: dart format .
   get:
     exec: flutter pub get
+  gen:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
