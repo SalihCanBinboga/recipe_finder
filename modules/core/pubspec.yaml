@@ -1,8 +1,8 @@
 name: core
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: '>=3.10.3'
 
 dependencies:
   connectivity_plus: ^3.0.6

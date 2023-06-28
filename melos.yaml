@@ -1,0 +1,12 @@
+name: recipe_finder
+
+packages:
+  - modules/*
+
+scripts:
+  analyze:
+    exec: dart analyze .
+  format:
+    exec: dart format .
+  get:
+    exec: flutter pub get

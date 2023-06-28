@@ -44,3 +44,5 @@ app.*.map.json
 /android/app/release
 /lib/app/init/dependency_injection/dependency_injection.config.dart
 .vscode/launch.json
+pubspec_overrides.yaml
+.fvm/flutter_sdk/

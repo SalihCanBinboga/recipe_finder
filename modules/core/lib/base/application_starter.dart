@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' show BuildContext, InheritedWidget;
 
 import '../utils/network_manager/base_network_manager.dart';
 import '../utils/network_manager/network_manager.dart';
+import '../widget/screen_working_manager/screen_working_manager.dart';
 import 'route_manager.dart';
 
 class ApplicationStarter extends InheritedWidget {
@@ -9,12 +10,15 @@ class ApplicationStarter extends InheritedWidget {
     required super.child,
     required RouteManager routeManager,
     NetworkStateManager? networkStateManager,
+    ScreenWorkingManager? screenWorkingManager,
     super.key,
   })  : _routeManager = routeManager,
-        _networkStateManager = networkStateManager;
+        _networkStateManager = networkStateManager,
+        _screenWorkingManager = screenWorkingManager;
 
   final RouteManager _routeManager;
   final NetworkStateManager? _networkStateManager;
+  final ScreenWorkingManager? _screenWorkingManager;
 
   static RouteManager ofRouteManager(BuildContext context) {
     return ApplicationStarter.of(context)._routeManager;
@@ -25,6 +29,11 @@ class ApplicationStarter extends InheritedWidget {
     final instanceNetworkStateManager = instance._networkStateManager;
 
     return instanceNetworkStateManager ?? NetworkStateManagerImpl.instance;
+  }
+
+  static ScreenWorkingManager? ofScreenWorkingManager(BuildContext context) {
+    final ApplicationStarter instance = ApplicationStarter.of(context);
+    return instance._screenWorkingManager;
   }
 
   static ApplicationStarter of(BuildContext context) {
