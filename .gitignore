@@ -46,3 +46,4 @@ app.*.map.json
 .vscode/launch.json
 pubspec_overrides.yaml
 .fvm/flutter_sdk/
+/.fvm/flutter_sdk/
