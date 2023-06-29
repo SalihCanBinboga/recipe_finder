@@ -3,6 +3,11 @@ name: recipe_finder
 packages:
   - modules/*
 
+command:
+  version:
+    branch: develop
+    releaseUrl: true
+
 scripts:
   analyze:
     exec: dart analyze .
