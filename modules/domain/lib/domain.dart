@@ -6,5 +6,6 @@ export 'exports.dart';
 @InjectableInit.microPackage(
   preferRelativeImports: true,
   usesNullSafety: true,
+  createGetItHelper: true,
 )
 void initMicroPackage() {}

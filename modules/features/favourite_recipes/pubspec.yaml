@@ -1,0 +1,35 @@
+name: favourite_recipes
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Dependency Injection
+  injectable:
+    path: ./../../../../injectable/injectable
+  # Adding gaps inside
+  gap: ^3.0.0
+
+  core:
+    path: ../../core
+
+  domain:
+    path: ../../domain
+
+  ui:
+    path: ../../common/ui
+
+  route_information:
+    path: ../../common/route_information
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.3.3
+  injectable_generator:
+    path: ./../../../../injectable/injectable_generator

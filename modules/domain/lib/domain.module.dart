@@ -17,10 +17,13 @@ import 'usecases/get_last_query_recipes_use_case.dart' as _i6;
 import 'usecases/remove_favorite_recipe_use_case.dart' as _i7;
 import 'usecases/search_recipes_use_case.dart' as _i8;
 
+late _i1.GetItHelper domainGetIt;
+
 class DomainPackageModule extends _i1.MicroPackageModule {
   // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i2.FutureOr<void> init(_i1.GetItHelper gh) {
+    domainGetIt = gh;
     gh.lazySingleton<_i3.AddFavoriteRecipeUseCase>(() =>
         _i3.AddFavoriteRecipeUseCase(repository: gh<_i4.RecipeRepository>()));
     gh.lazySingleton<_i5.GetFavoriteRecipesUseCase>(() =>

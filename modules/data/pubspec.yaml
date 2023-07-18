@@ -1,5 +1,6 @@
 name: data
 version: 0.0.2
+publish_to: none
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -16,7 +17,8 @@ dependencies:
   sqflite: ^2.2.6
   shared_preferences: ^2.1.0
   # Dependency Injection
-  injectable: ^2.1.1
+  injectable:
+    path: ./../../../injectable/injectable
 
   domain:
     path: ../domain
@@ -27,4 +29,5 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
-  injectable_generator: ^2.1.5
+  injectable_generator:
+    path: ./../../../injectable/injectable_generator

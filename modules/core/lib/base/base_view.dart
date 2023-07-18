@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart'
     show BuildContext, Builder, StatelessWidget, Widget;
-import 'package:provider/provider.dart' show ChangeNotifierProvider, Provider;
+import 'package:provider/provider.dart'
+    show ChangeNotifierProvider, ReadContext;
 
 import 'base_view_model.dart';
 
 abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   const BaseView({super.key});
 
-  T viewModel(BuildContext context);
+  T viewModelBuilder(BuildContext context);
 
   Widget builder(BuildContext context, T viewModel);
 
@@ -15,14 +16,11 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
       create: (context) {
-        final viewModel = this.viewModel(context);
-        viewModel.setContext(context);
-        return viewModel;
+        return this.viewModelBuilder(context)..setContext(context);
       },
       child: Builder(
         builder: (context) {
-          final viewModel = Provider.of<T>(context);
-          return builder(context, viewModel);
+          return builder(context, context.read<T>());
         },
       ),
     );

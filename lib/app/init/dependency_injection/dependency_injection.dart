@@ -1,8 +1,7 @@
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+import 'package:data/data.module.dart';
+import 'package:domain/domain.module.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:presentation/exports.dart';
 
 import 'dependency_injection.config.dart';
 
@@ -18,8 +17,6 @@ final getIt = GetIt.instance;
   externalPackageModulesBefore: [
     ExternalModule(DataPackageModule),
     ExternalModule(DomainPackageModule),
-    ExternalModule(PresentationPackageModule),
-    ExternalModule(PresentationInstancePackageModule)
   ],
 )
-Future<void> configureDependencies() async => await getIt.startInjection();
+Future<void> configureDependencies() async => getIt.startInjection();
