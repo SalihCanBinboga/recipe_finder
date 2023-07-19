@@ -9,10 +9,6 @@ final getIt = GetIt.instance;
 
 @InjectableInit(
   initializerName: 'startInjection',
-  preferRelativeImports: true,
-  asExtension: true,
-  usesNullSafety: true,
-  includeMicroPackages: true,
   throwOnMissingDependencies: true,
   externalPackageModulesBefore: [
     ExternalModule(DataPackageModule),
