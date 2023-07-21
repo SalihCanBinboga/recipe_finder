@@ -1,3 +1,4 @@
+import 'package:core/base/view_args.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,9 +6,7 @@ import 'base_view_model.dart';
 
 abstract class ReactiveBaseView<T extends BaseViewModel, U>
     extends StatefulWidget {
-  T createViewModel({
-    required U routeArgument,
-  });
+  T createViewModel(U routeArgument);
 
   Widget build(BuildContext context, T viewModel);
 
@@ -29,15 +28,20 @@ class _ReactiveBaseViewState<T extends BaseViewModel, U>
   @override
   void didChangeDependencies() {
     if (!isInit) {
-      final routeArgument = ModalRoute.of(context)?.settings.arguments;
+      U routeArgument = _getRouteArguments();
 
-      viewModel = widget.createViewModel(
-        routeArgument: routeArgument as U,
-      );
+      viewModel = widget.createViewModel(routeArgument);
 
       isInit = true;
     }
     super.didChangeDependencies();
+  }
+
+  U _getRouteArguments() {
+    final routeArgument = ModalRoute.of(context)?.settings.arguments;
+    final viewArgs = routeArgument as ViewArgs;
+
+    return viewArgs.data as U;
   }
 
   @override

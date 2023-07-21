@@ -123,9 +123,7 @@ class RecipeDetailView
   }
 
   @override
-  RecipeDetailViewModel createViewModel({
-    required RecipeEntity routeArgument,
-  }) {
+  RecipeDetailViewModel createViewModel(RecipeEntity routeArgument) {
     final addUseCase = recipeDetailGetIt<AddFavoriteRecipeUseCase>();
     final getFavoritesUseCase = recipeDetailGetIt<GetFavoriteRecipesUseCase>();
     final removeUseCase = recipeDetailGetIt<RemoveFavoriteRecipe>();

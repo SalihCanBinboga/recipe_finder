@@ -1,15 +1,16 @@
-import 'package:core/base/base_view.dart';
+import 'package:core/base/reactive_base_view.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/components/recipe_list_item_widget.dart';
 
 import '../favourite_recipes.module.dart';
 import 'favourite_recipes_view_model.dart';
 
-class FavouriteRecipesView extends BaseView<FavouriteRecipesViewModel> {
+class FavouriteRecipesView
+    extends ReactiveBaseView<FavouriteRecipesViewModel, void> {
   const FavouriteRecipesView({super.key});
 
   @override
-  Widget builder(BuildContext context, FavouriteRecipesViewModel viewModel) {
+  Widget build(BuildContext context, FavouriteRecipesViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favourite Recipes'),
@@ -32,7 +33,7 @@ class FavouriteRecipesView extends BaseView<FavouriteRecipesViewModel> {
   }
 
   @override
-  FavouriteRecipesViewModel viewModelBuilder(BuildContext context) {
+  FavouriteRecipesViewModel createViewModel(_) {
     return favouriteRecipesGetIt<FavouriteRecipesViewModel>();
   }
 }
