@@ -1,0 +1,3 @@
+index_generator:
+  exclude:
+    - '**.g.dart'
