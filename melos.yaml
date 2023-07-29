@@ -1,4 +1,4 @@
-name: binboo
+name: recipe_finder
 
 packages:
   - modules/*
