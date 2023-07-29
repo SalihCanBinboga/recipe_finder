@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @InjectableInit.microPackage(
   preferRelativeImports: true,
-  throwOnMissingDependencies: true,
+  throwOnMissingDependencies: false,
   createGetItHelper: true,
 )
 void initMicroPackage() {}

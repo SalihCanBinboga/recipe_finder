@@ -1,12 +1,10 @@
 import 'package:core/base/reactive_base_view.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../recipe_detail.module.dart';
 import 'recipe_detail_view_model.dart';
 
-class RecipeDetailView
-    extends ReactiveBaseView<RecipeDetailViewModel, RecipeEntity> {
+class RecipeDetailView extends ReactiveBaseView<RecipeDetailViewModel> {
   const RecipeDetailView({super.key});
 
   @override
@@ -30,14 +28,14 @@ class RecipeDetailView
                 child: Stack(
                   children: [
                     Hero(
-                      tag: viewModel.recipe.id,
+                      tag: viewModel.args.id,
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(16),
                           bottomRight: Radius.circular(16),
                         ),
                         child: Image.network(
-                          viewModel.recipe.imageUrl,
+                          viewModel.args.imageUrl,
                           fit: BoxFit.fill,
                           width: double.infinity,
                           height: 300,
@@ -76,7 +74,7 @@ class RecipeDetailView
               ),
               const Gap(8),
               Text(
-                viewModel.recipe.name,
+                viewModel.args.name,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -86,11 +84,11 @@ class RecipeDetailView
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
                   padding: const EdgeInsets.only(top: 16),
-                  itemCount: viewModel.recipe.ingredientLines.length,
+                  itemCount: viewModel.args.ingredientLines.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    final ingredient = viewModel.recipe.ingredientLines[index];
+                    final ingredient = viewModel.args.ingredientLines[index];
 
                     return Text(ingredient);
                   },
@@ -107,7 +105,7 @@ class RecipeDetailView
               ),
               Wrap(
                 spacing: 8,
-                children: viewModel.recipe.ingredients
+                children: viewModel.args.ingredients
                     .map(
                       (label) => Chip(
                         label: Text(label),
@@ -123,16 +121,7 @@ class RecipeDetailView
   }
 
   @override
-  RecipeDetailViewModel createViewModel(RecipeEntity routeArgument) {
-    final addUseCase = recipeDetailGetIt<AddFavoriteRecipeUseCase>();
-    final getFavoritesUseCase = recipeDetailGetIt<GetFavoriteRecipesUseCase>();
-    final removeUseCase = recipeDetailGetIt<RemoveFavoriteRecipe>();
-
-    return RecipeDetailViewModel(
-      recipe: routeArgument,
-      addFavoriteRecipeUseCase: addUseCase,
-      getFavoriteRecipesUseCase: getFavoritesUseCase,
-      removeFavoriteRecipeUseCase: removeUseCase,
-    );
+  RecipeDetailViewModel createViewModel() {
+    return recipeDetailGetIt<RecipeDetailViewModel>();
   }
 }

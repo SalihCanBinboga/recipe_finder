@@ -1,15 +1,15 @@
 import 'package:core/base/base_view_model.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
-class RecipeDetailViewModel extends BaseViewModel {
+@injectable
+class RecipeDetailViewModel extends BaseViewModel<RecipeEntity> {
   RecipeDetailViewModel({
-    required this.recipe,
     required this.addFavoriteRecipeUseCase,
     required this.removeFavoriteRecipeUseCase,
     required this.getFavoriteRecipesUseCase,
   });
 
-  final RecipeEntity recipe;
   final AddFavoriteRecipeUseCase addFavoriteRecipeUseCase;
   final RemoveFavoriteRecipe removeFavoriteRecipeUseCase;
   final GetFavoriteRecipesUseCase getFavoriteRecipesUseCase;
@@ -25,18 +25,18 @@ class RecipeDetailViewModel extends BaseViewModel {
   bool get isFavorite {
     return favoriteRecipes
         .where(
-          (element) => element.id == recipe.id,
+          (element) => element.id == args.id,
         )
         .isNotEmpty;
   }
 
   Future<void> toggleFavorite() async {
     if (isFavorite) {
-      await removeFavoriteRecipeUseCase(recipe);
-      favoriteRecipes.remove(recipe);
+      await removeFavoriteRecipeUseCase(args);
+      favoriteRecipes.remove(args);
     } else {
-      await addFavoriteRecipeUseCase(recipe);
-      favoriteRecipes.add(recipe);
+      await addFavoriteRecipeUseCase(args);
+      favoriteRecipes.add(args);
     }
 
     notifyListeners();

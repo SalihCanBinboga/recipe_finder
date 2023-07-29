@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show BuildContext;
 
 abstract class ScreenWorkingManager {
-  ScreenWorkingManager({required this.context});
+  ScreenWorkingManager();
 
-  final BuildContext context;
-
-  void showLoading();
+  void showLoading(BuildContext context);
 
   void hideLoading();
 }

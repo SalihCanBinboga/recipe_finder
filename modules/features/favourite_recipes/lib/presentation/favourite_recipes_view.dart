@@ -5,8 +5,7 @@ import 'package:ui/components/recipe_list_item_widget.dart';
 import '../favourite_recipes.module.dart';
 import 'favourite_recipes_view_model.dart';
 
-class FavouriteRecipesView
-    extends ReactiveBaseView<FavouriteRecipesViewModel, void> {
+class FavouriteRecipesView extends ReactiveBaseView<FavouriteRecipesViewModel> {
   const FavouriteRecipesView({super.key});
 
   @override
@@ -33,7 +32,7 @@ class FavouriteRecipesView
   }
 
   @override
-  FavouriteRecipesViewModel createViewModel(_) {
+  FavouriteRecipesViewModel createViewModel() {
     return favouriteRecipesGetIt<FavouriteRecipesViewModel>();
   }
 }
