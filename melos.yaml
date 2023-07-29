@@ -1,13 +1,8 @@
-name: recipe_finder
+name: binboo
 
 packages:
   - modules/*
   - modules/**/*
-
-command:
-  version:
-    branch: develop
-    releaseUrl: true
 
 scripts:
   analyze:
@@ -18,8 +13,10 @@ scripts:
     exec: fvm flutter pub get
   gen:
     description: Build all generated files for Flutter packages in this project.
-    run: melos exec -c 1 --depends-on="build_runner" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+    run: melos exec -c 1 --depends-on="build_runner" --flutter -- "flutter pub run build_runner build --delete-conflicting-outputs"
     select-package:
       depends-on: build_runner
   clean:pubspec.lock:
     run: rm pubspec.lock
+  test:
+    exec: fvm flutter test
