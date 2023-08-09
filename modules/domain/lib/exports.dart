@@ -6,7 +6,6 @@ export 'data_sources/local/local_recipe_favorite_data_source.dart';
 export 'data_sources/local/recipes_cache_database.dart';
 export 'data_sources/remote/remote_recipe_data_source.dart';
 export 'domain.dart';
-export 'domain.module.dart';
 export 'models/recipe_entity/recipe_entity.dart';
 export 'repositories/recipe_repository.dart';
 export 'usecases/add_favorite_recipe_use_case.dart';

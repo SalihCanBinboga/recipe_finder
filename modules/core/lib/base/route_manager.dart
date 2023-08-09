@@ -1,3 +1,4 @@
+import 'package:core/base/view_args.dart';
 import 'package:flutter/material.dart'
     show BuildContext, Navigator, Route, RouteSettings;
 
@@ -14,7 +15,13 @@ abstract class RouteManager {
     return Navigator.pushNamed<T>(
       context,
       route,
-      arguments: arguments,
+      arguments: _composeArguments<T>(arguments),
+    );
+  }
+
+  ViewArgs<T> _composeArguments<T extends Object?>(arguments) {
+    return ViewArgs<T>(
+      data: arguments,
     );
   }
 

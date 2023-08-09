@@ -3,7 +3,6 @@
 library data;
 
 export 'data.dart';
-export 'data.module.dart';
 export 'data_sources/constants/api_keys.dart';
 export 'data_sources/constants/local_storage_keys.dart';
 export 'data_sources/models/recipe_ingredient.dart';

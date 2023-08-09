@@ -1,6 +1,7 @@
 name: recipe_finder
 description: A new Flutter project.
 publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
@@ -10,9 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Dependency Injection
-  get_it: ^7.2.0
-  injectable: ^2.1.1
+  injectable: ^2.2.0
 
   # MODULES
   core:
@@ -21,15 +20,29 @@ dependencies:
     path: modules/domain
   data:
     path: modules/data
-  presentation:
-    path: modules/presentation
+
+  route_information:
+    path: modules/common/route_information
+
+  favourite_recipes:
+    path: ./modules/features/favourite_recipes
+
+  home:
+    path: ./modules/features/home
+
+  recipe_detail:
+    path: ./modules/features/recipe_detail
+
+  route_not_found:
+    path: ./modules/features/route_not_found
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
-  injectable_generator: ^2.1.5
+  injectable_generator: ^2.3.0
   melos: ^3.1.0
 
 flutter:

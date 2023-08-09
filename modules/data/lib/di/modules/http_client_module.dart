@@ -51,7 +51,7 @@ abstract class HttpClientModule {
         }
         return handler.next(response);
       },
-      onError: (DioError e, handler) {
+      onError: (DioException e, handler) {
         if (kDebugMode) {
           print('ERROR[${e.response?.statusCode}] => '
               'PATH: ${e.requestOptions.path}');

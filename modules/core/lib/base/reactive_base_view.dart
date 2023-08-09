@@ -1,43 +1,56 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'base_view_model.dart';
+import 'view_args.dart';
 
-abstract class ReactiveBaseView<T extends BaseViewModel, U>
+abstract class ReactiveBaseView<T extends BaseViewModel>
     extends StatefulWidget {
-  T createViewModel({
-    required U routeArgument,
-  });
-
-  Widget build(BuildContext context, T viewModel);
-
   const ReactiveBaseView({
     super.key,
   });
 
+  T createViewModel();
+
+  Widget build(BuildContext context, T viewModel);
+
   @override
-  State<ReactiveBaseView<T, U>> createState() {
-    return _ReactiveBaseViewState<T, U>();
+  State<ReactiveBaseView<T>> createState() {
+    return _ReactiveBaseViewState<T>();
   }
 }
 
-class _ReactiveBaseViewState<T extends BaseViewModel, U>
-    extends State<ReactiveBaseView<T, U>> {
+class _ReactiveBaseViewState<T extends BaseViewModel>
+    extends State<ReactiveBaseView<T>> {
   late T viewModel;
   bool isInit = false;
 
   @override
   void didChangeDependencies() {
     if (!isInit) {
-      final routeArgument = ModalRoute.of(context)?.settings.arguments;
+      viewModel = widget.createViewModel();
 
-      viewModel = widget.createViewModel(
-        routeArgument: routeArgument as U,
-      );
+      final Object? routeArgument = _getRouteArguments();
+
+      viewModel.args = routeArgument;
 
       isInit = true;
     }
     super.didChangeDependencies();
+  }
+
+  Object? _getRouteArguments() {
+    final routeArgument = ModalRoute.of(context)?.settings.arguments;
+
+    if (routeArgument == null) {
+      return null;
+    }
+
+    final viewArgs = routeArgument as ViewArgs;
+
+    return viewArgs.data;
   }
 
   @override

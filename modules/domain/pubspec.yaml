@@ -1,4 +1,6 @@
 name: domain
+version: 0.0.2
+publish_to: none
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -10,7 +12,7 @@ dependencies:
   # JSON Annotation Package
   json_annotation: ^4.8.0
   # Dependency Injection
-  injectable: ^2.1.1
+  injectable: ^2.2.0
   # Test Mocking
   mockito: ^5.4.0
 
@@ -22,4 +24,4 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
-  injectable_generator: ^2.1.5
+  injectable_generator: ^2.3.0
