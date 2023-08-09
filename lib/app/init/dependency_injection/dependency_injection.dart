@@ -1,11 +1,9 @@
+import 'package:core/core.dart';
 import 'package:data/data.module.dart';
 import 'package:domain/domain.module.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 import 'dependency_injection.config.dart';
-
-final getIt = GetIt.instance;
 
 @InjectableInit(
   initializerName: 'startInjection',
@@ -15,4 +13,4 @@ final getIt = GetIt.instance;
     ExternalModule(DomainPackageModule),
   ],
 )
-Future<void> configureDependencies() async => getIt.startInjection();
+Future<void> configureDependencies() async => diContainer.startInjection();

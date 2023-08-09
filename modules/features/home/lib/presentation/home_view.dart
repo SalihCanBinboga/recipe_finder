@@ -1,11 +1,10 @@
-import 'package:core/base/base_view.dart';
+import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/components/recipe_list_item_widget.dart';
 
-import '../home.module.dart';
 import 'home_view_model.dart';
 
 class HomeView extends BaseView<HomeViewModel> {
@@ -47,7 +46,7 @@ class HomeView extends BaseView<HomeViewModel> {
 
   @override
   HomeViewModel viewModelBuilder(BuildContext context) {
-    return homeGetIt<HomeViewModel>();
+    return diContainer<HomeViewModel>();
   }
 }
 

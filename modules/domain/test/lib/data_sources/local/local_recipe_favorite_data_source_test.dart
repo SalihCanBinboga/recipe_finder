@@ -68,11 +68,11 @@ void main() {
           favoriteRecipes.removeLast();
         },
       );
-      
+
       await dataSource.removeRecipe('1');
-      
+
       verify(dataSource.removeRecipe(any)).called(1);
-      
+
       expect(favoriteRecipes.length, equals(5));
     });
   });

@@ -11,10 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Dependency Injection
-  get_it: ^7.2.0
-  injectable:
-    path: ./../injectable/injectable
+  injectable: ^2.2.0
 
   # MODULES
   core:
@@ -45,8 +42,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
-  injectable_generator:
-    path: ./../injectable/injectable_generator
+  injectable_generator: ^2.3.0
   melos: ^3.1.0
 
 flutter:

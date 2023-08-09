@@ -1,7 +1,6 @@
-import 'package:core/base/reactive_base_view.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import '../recipe_detail.module.dart';
 import 'recipe_detail_view_model.dart';
 
 class RecipeDetailView extends ReactiveBaseView<RecipeDetailViewModel> {
@@ -122,6 +121,6 @@ class RecipeDetailView extends ReactiveBaseView<RecipeDetailViewModel> {
 
   @override
   RecipeDetailViewModel createViewModel() {
-    return recipeDetailGetIt<RecipeDetailViewModel>();
+    return diContainer<RecipeDetailViewModel>();
   }
 }

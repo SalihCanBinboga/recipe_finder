@@ -1,0 +1,5 @@
+index_generator:
+  exclude:
+    - '**_mixin.dart'
+  indexes:
+    - path: lib

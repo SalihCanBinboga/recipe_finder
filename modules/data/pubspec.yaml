@@ -17,8 +17,7 @@ dependencies:
   sqflite: ^2.2.6
   shared_preferences: ^2.1.0
   # Dependency Injection
-  injectable:
-    path: ./../../../injectable/injectable
+  injectable: ^2.2.0
 
   domain:
     path: ../domain
@@ -29,5 +28,4 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
-  injectable_generator:
-    path: ./../../../injectable/injectable_generator
+  injectable_generator: ^2.3.0

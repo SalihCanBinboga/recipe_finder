@@ -10,6 +10,5 @@ import 'package:injectable/injectable.dart';
     GetLastQueryRecipesUseCase,
   ],
   throwOnMissingDependencies: true,
-  createGetItHelper: true,
 )
 void initMicroPackage() {}

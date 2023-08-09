@@ -1,8 +1,7 @@
-import 'package:core/base/reactive_base_view.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/components/recipe_list_item_widget.dart';
 
-import '../favourite_recipes.module.dart';
 import 'favourite_recipes_view_model.dart';
 
 class FavouriteRecipesView extends ReactiveBaseView<FavouriteRecipesViewModel> {
@@ -33,6 +32,6 @@ class FavouriteRecipesView extends ReactiveBaseView<FavouriteRecipesViewModel> {
 
   @override
   FavouriteRecipesViewModel createViewModel() {
-    return favouriteRecipesGetIt<FavouriteRecipesViewModel>();
+    return diContainer<FavouriteRecipesViewModel>();
   }
 }

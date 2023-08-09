@@ -1,9 +1,7 @@
-import 'package:core/base/base_view_model.dart';
+import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 import 'package:route_information/route_information.dart';
-
-import '../home.module.dart';
 
 @injectable
 class HomeViewModel extends BaseViewModel {
@@ -27,7 +25,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void onSearchTextChanged(String query) {
-    final useCase = homeGetIt<SearchRecipesUseCase>();
+    final useCase = diContainer<SearchRecipesUseCase>();
 
     useCase(
       query: query,
